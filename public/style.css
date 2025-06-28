@@ -1,0 +1,337 @@
+:root {
+  --green: #2e7d32;
+  --gold: #c9a01a;
+  --white: #ffffff;
+  --offwhite: #f9f9f9;
+  --light-gray: #f0f0f0;
+  --dark-gray: #333;
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Segoe UI', Roboto, sans-serif;
+  background-color: var(--offwhite);
+  color: var(--dark-gray);
+}
+
+header {
+  background: var(--green);
+  color: var(--white);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.2rem 2rem;
+  box-shadow: var(--shadow);
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+}
+
+nav a {
+  color: var(--white);
+  margin-left: 2rem;
+  text-decoration: none;
+  font-weight: 500;
+  transition: opacity 0.3s;
+}
+
+nav a:hover {
+  opacity: 0.8;
+}
+
+main {
+  flex: 1;
+  padding: 2rem 1rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.images {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+.images img {
+  width: 85px;
+  height: auto;
+  border-radius: 12px;
+  border: 3px solid var(--green);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.images img:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow);
+}
+
+.airtime-form,
+.history {
+  background: var(--white);
+  border-radius: 12px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: var(--shadow);
+}
+
+.airtime-form h2,
+.history h2 {
+  color: var(--green);
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.airtime-form hr,
+.history hr {
+  border: 0;
+  border-top: 2px solid var(--light-gray);
+  margin: 1rem 0 2rem;
+}
+
+form label {
+  font-size: 0.95rem;
+  margin-bottom: 0.25rem;
+  display: block;
+  color: var(--dark-gray);
+}
+
+form input {
+  display: block;
+  width: 100%;
+  margin-bottom: 1.5rem;
+  padding: 0.85rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+form input:focus {
+  border-color: var(--green);
+  box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.1);
+  outline: none;
+}
+
+form button {
+  display: block;
+  width: 100%;
+  background-color: var(--green);
+  color: var(--white);
+  font-weight: bold;
+  padding: 1rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+
+form button:hover {
+  background-color: #b38c0f;
+  transform: translateY(-2px);
+}
+
+#historyList {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem;
+}
+
+.transaction-card {
+  background: var(--offwhite);
+  border: 1px solid var(--light-gray);
+  border-left: 4px solid var(--green);
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: var(--shadow);
+}
+
+.transaction-card h4 {
+  margin-bottom: 0.5rem;
+  color: var(--dark-gray);
+}
+
+.transaction-card p {
+  font-size: 0.9rem;
+  color: #555;
+  line-height: 1.4;
+}
+
+footer {
+  text-align: center;
+  padding: 2rem 1rem;
+  background-color: var(--green);
+  color: var(--white);
+}
+
+.footer-content {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.footer-content h4 {
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+  color: var(--gold);
+}
+
+.footer-content img {
+  height: 80px;
+  margin: 0.5rem;
+  vertical-align: middle;
+  border-radius: 6px;
+  background: var(--white);
+  padding: 4px;
+}
+
+.footer-content p {
+  margin-top: 1rem;
+  font-size: 0.85rem;
+  color: var(--white);
+  opacity: 0.8;
+}
+
+.certifications, .partners {
+  margin-bottom: 1rem;
+}
+
+
+@media (max-width: 600px) {
+  header {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  nav {
+    margin-top: 0.5rem;
+  }
+
+  nav a {
+    margin: 0 0.75rem;
+  }
+
+  .images {
+    gap: 20px;
+  }
+
+  form button {
+    font-size: 1.1rem;
+  }
+}
+
+.how-to {
+  background: var(--white);
+  border-radius: 12px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: var(--shadow);
+}
+
+.how-to h2 {
+  color: var(--green);
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.how-to hr {
+  border: 0;
+  border-top: 2px solid var(--light-gray);
+  margin: 1rem 0 2rem;
+}
+
+.steps {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.step {
+  flex: 1 1 200px;
+  max-width: 250px;
+  text-align: center;
+}
+
+.step img {
+  width: 100px;
+  height: auto;
+  margin-bottom: 1rem;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+}
+
+.step h4 {
+  margin-bottom: 0.5rem;
+  color: var(--gold);
+}
+
+.step p {
+  font-size: 0.9rem;
+  color: #555;
+  line-height: 1.4;
+}
+
+.help-page {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  text-align: center;
+}
+
+.help-page h1 {
+  color: var(--green);
+  margin-bottom: 0.5rem;
+}
+
+.help-page p {
+  margin-bottom: 2rem;
+}
+
+.contact-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1.5rem;
+}
+
+.contact-card {
+  background: var(--white);
+  border: 2px solid var(--gold);
+  border-radius: 10px;
+  padding: 1rem;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+}
+
+.contact-card img {
+  width: 40px;
+  height: 40px;
+  margin-bottom: 0.5rem;
+}
+
+.contact-card h3 {
+  margin-bottom: 0.3rem;
+  color: var(--green);
+}
+
+.contact-card a {
+  color: var(--gold);
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.contact-card a:hover {
+  text-decoration: underline;
+}

@@ -1,0 +1,125 @@
+:root {
+  --green: #2e7d32;
+  --gold: #c9a01a;
+  --white: #ffffff;
+  --offwhite: #f9f9f9;
+  --light-gray: #f0f0f0;
+  --dark-gray: #333;
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+body {
+    font-family: sans-serif;
+    margin: 0px;
+    background-color: #f4f4f4; 
+}
+
+header {
+  background: var(--green);
+  color: var(--white);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.2rem 2rem;
+  box-shadow: var(--shadow);
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+}
+
+nav a {
+  color: var(--white);
+  margin-left: 2rem;
+  text-decoration: none;
+  font-weight: 500;
+  transition: opacity 0.3s;
+}
+
+nav a:hover {
+  opacity: 0.8;
+}
+.card-container {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    min-height: 100vh; 
+}
+
+.card {
+    position: relative; 
+    background-color: gold; 
+    padding: 20px;
+    border-radius: 5px;
+    overflow: hidden; 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+}
+
+.coming-soon-text {
+    font-size: 2em;
+    white-space: nowrap; 
+    margin: 0; 
+}
+
+.coming-soon-text span {
+    color: green;
+    opacity: 0; 
+    transform: translateX(-20px); 
+    display: inline-block; 
+    animation: slideIn 1s ease-out forwards; 
+}
+
+/* Calculate staggered delay for each letter */
+.coming-soon-text span:nth-child(1) { animation-delay: 0.1s; }
+.coming-soon-text span:nth-child(2) { animation-delay: 0.2s; }
+.coming-soon-text span:nth-child(3) { animation-delay: 0.3s; }
+.coming-soon-text span:nth-child(4) { animation-delay: 0.4s; }
+.coming-soon-text span:nth-child(5) { animation-delay: 0.5s; }
+.coming-soon-text span:nth-child(6) { animation-delay: 0.6s; }
+.coming-soon-text span:nth-child(7) { animation-delay: 0.7s; }
+.coming-soon-text span:nth-child(8) { animation-delay: 0.8s; }
+.coming-soon-text span:nth-child(9) { animation-delay: 0.9s; }
+.coming-soon-text span:nth-child(10) { animation-delay: 1s; }
+.coming-soon-text span:nth-child(11) { animation-delay: 1.1s; }
+.coming-soon-text span:nth-child(12) { animation-delay: 1.2s; }
+
+@keyframes slideIn {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.border-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 2px solid transparent; 
+  border-radius: 5px;
+  opacity: 0; 
+  animation: borderAppear 1.5s ease-in-out forwards; 
+  animation-delay: 1.5s; 
+}
+
+footer {
+  text-align: center;
+  padding: 2rem 1rem;
+  background-color: var(--green);
+  color: var(--white);
+}
+
+.footer-content {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+@keyframes borderAppear {
+    to {
+        border-color: green;
+        opacity: 1;
+  }
+}

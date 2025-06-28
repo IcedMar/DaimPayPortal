@@ -1,0 +1,22 @@
+{
+  "name": "DaimaPay",
+  "short_name": "DaimaPay",
+  "description": "Buy airtime instantly for any network with DaimaPay!",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#2e7d32",
+  "theme_color": "#2e7d32",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/public/icons/icon-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/public/icons/icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ]
+}
