@@ -27,6 +27,14 @@ app.get('/help', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'help.html'));
 });
 
+app.get('/service-worker.js', (req, res) => {
+  res.sendFile(path.join(__dirname, 'service-worker.js'));
+});
+
+app.get('/manifest.json', (req, res) => {
+  res.sendFile(path.join(__dirname, 'manifest.json'));
+});
+
 app.get('/wallet', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'wallet.html'));
 });
