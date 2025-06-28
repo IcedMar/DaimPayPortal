@@ -27,7 +27,7 @@
   <link rel="icon" href="icons/icon-512.png" type="./icons/icon-512.png">
 
     <!-- Theme Color for Mobile -->
-  <link rel="manifest" href="./manifest.json">
+  <link rel="manifest" href="/manifest.json">
   <meta name="theme-color" content="#2e7d32" />
 
     <!-- Canonical -->
@@ -132,7 +132,7 @@
 <script>
   if ("serviceWorker" in navigator) {
     window.addEventListener("load", () => {
-      navigator.serviceWorker.register("./service-worker.js")
+      navigator.serviceWorker.register("/service-worker.js")
         .then(reg => {
           console.log("✅ Service Worker registered: ", reg.scope);
         })
