@@ -31,7 +31,7 @@ const amountInput = document.getElementById('amount');
 const payPhoneInput = document.getElementById('phone2');
 const historyList = document.getElementById('historyList');
 
-const API_BASE_URL = 'https://your-api.com'; // Update this!
+const API_BASE_URL = 'https://daimapayserver.onrender.com'; 
 
 buyForm.addEventListener('submit', async (e) => {
   e.preventDefault();
