@@ -1,5 +1,3 @@
-// script.js
-
 // --- IndexedDB setup ---
 let db;
 const DB_NAME = "DaimaPayDB";
@@ -24,6 +22,19 @@ request.onupgradeneeded = (event) => {
   }
 };
 
+// --- Phone number formatter ---
+function formatTo254(phone) {
+  let num = phone.trim();
+  if (num.startsWith('+254')) {
+    return num.replace('+', '');
+  } else if (num.startsWith('254')) {
+    return num;
+  } else if (num.startsWith('0')) {
+    return '254' + num.substring(1);
+  }
+  return num; // fallback, if already correct
+}
+
 // --- Form handling ---
 const buyForm = document.getElementById('buyForm');
 const phoneInput = document.getElementById('phone');
@@ -36,14 +47,20 @@ const API_BASE_URL = 'https://daimapayserver.onrender.com';
 buyForm.addEventListener('submit', async (e) => {
   e.preventDefault();
 
-  const topupNumber = phoneInput.value.trim();
+  const rawTopupNumber = phoneInput.value.trim();
   const amount = amountInput.value.trim();
-  const mpesaNumber = payPhoneInput.value.trim();
+  const rawMpesaNumber = payPhoneInput.value.trim();
 
-  if (!topupNumber || !amount || !mpesaNumber) {
+  if (!rawTopupNumber || !amount || !rawMpesaNumber) {
     alert('Fill all fields!');
     return;
   }
+
+  // ✅ Format both numbers to 254
+  const topupNumber = formatTo254(rawTopupNumber);
+  const mpesaNumber = formatTo254(rawMpesaNumber);
+
+  console.log('Formatted:', { topupNumber, mpesaNumber });
 
   try {
     const res = await fetch(`${API_BASE_URL}/pay`, {
@@ -115,4 +132,3 @@ function loadTransactions() {
     });
   };
 }
-
