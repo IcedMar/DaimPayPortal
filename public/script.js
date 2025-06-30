@@ -22,17 +22,27 @@ request.onupgradeneeded = (event) => {
   }
 };
 
-// --- Phone number formatter ---
 function formatTo254(phone) {
-  let num = phone.trim();
-  if (num.startsWith('+254')) {
-    return num.replace('+', '');
-  } else if (num.startsWith('254')) {
-    return num;
-  } else if (num.startsWith('0')) {
-    return '254' + num.substring(1);
+  let num = phone.trim().replace(/\s+/g, '');
+
+  if (num.startsWith('+')) {
+    num = num.substring(1);
   }
-  return num; // fallback, if already correct
+
+  if (num.startsWith('00')) {
+    num = num.substring(2);
+  }
+
+  if (num.startsWith('0')) {
+    num = '254' + num.substring(1);
+  }
+
+  if (num.startsWith('2547') || num.startsWith('2541')) {
+    return num;
+  }
+
+  console.warn(`⚠️ Unusual format: ${phone} -> ${num}`);
+  return num;
 }
 
 // --- Form handling ---
