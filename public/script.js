@@ -5,6 +5,28 @@ const STORE_NAME = "transactions";
 
 const request = indexedDB.open(DB_NAME, 1);
 
+function showNotification(message, type = 'success', duration = 3500) {
+  const note = document.getElementById('notification');
+  const icon = note.querySelector('i');
+  const text = note.querySelector('span');
+
+  // Icons per type
+  const icons = {
+    success: '✅',
+    error: '❌',
+    warning: '⚠️'
+  };
+
+  note.className = `notification ${type}`;
+  icon.textContent = icons[type] || '';
+  text.textContent = message;
+  note.classList.add('show');
+
+  setTimeout(() => {
+    note.classList.remove('show');
+  }, duration);
+}
+
 request.onerror = (event) => {
   console.error("❌ IndexedDB error:", event.target.error);
 };
@@ -62,8 +84,8 @@ buyForm.addEventListener('submit', async (e) => {
   const rawMpesaNumber = payPhoneInput.value.trim();
 
   if (!rawTopupNumber || !amount || !rawMpesaNumber) {
-    alert('Fill all fields!');
-    return;
+  showNotification('Fill all fields!', 'warning');
+  return;
   }
 
   // ✅ Format both numbers to 254
@@ -83,7 +105,7 @@ buyForm.addEventListener('submit', async (e) => {
     console.log('Server response:', data);
 
     if (res.ok) {
-      alert('Payment initiated! Check your M-Pesa.');
+      showNotification('Payment initiated! Check your M-Pesa.', 'success');
       const tx = {
         transID: data.transID || `local-${Date.now()}`,
         recipientPhone: topupNumber,
@@ -94,11 +116,11 @@ buyForm.addEventListener('submit', async (e) => {
       saveTransaction(tx);
       buyForm.reset();
     } else {
-      alert(`Error: ${data.error || 'Server failed'}`);
+      showNotification(data.error || 'Server failed. Try again.', 'error');
     }
   } catch (err) {
     console.error(err);
-    alert('Network error. Try again.');
+   showNotification('Network error. Please try again.', 'error');
   }
 });
 
