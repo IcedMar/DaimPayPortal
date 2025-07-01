@@ -149,21 +149,42 @@ form button:hover {
   position: fixed;
   top: 20px;
   right: 20px;
-  background-color: #323232;
+  max-width: 320px;
+  padding: 16px 20px;
+  font-size: 16px;
+  font-weight: 500;
   color: #fff;
-  padding: 12px 20px;
-  border-radius: 5px;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
   z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 10px;
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.4s ease, transform 0.4s ease;
-  transform: translateY(-10px);
+  transform: translateY(-20px);
 }
 .notification.show {
   opacity: 1;
   transform: translateY(0);
   pointer-events: auto;
 }
+.notification.success {
+  background-color: #2e7d32;
+}
+.notification.error {
+  background-color: #c62828;
+}
+.notification.warning {
+  background-color: #f9a825;
+  color: #000;
+}
+.notification i {
+  font-style: normal;
+  font-weight: bold;
+}
+
 
 
 #historyList {
