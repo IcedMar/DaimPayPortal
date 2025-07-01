@@ -32,7 +32,9 @@
 
     <!-- Canonical -->
   <link rel="canonical" href="https://www.daimapay.co.ke/">
-
+  
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -65,33 +67,33 @@
         <input type="number" id="amount" placeholder="Enter Amount (KES)" required>
         <label for="phone2"><strong>M-Pesa Number:</strong></label>
         <input type="tel" id="phone2" placeholder="Enter Phone Number" required>
-        <button type="submit">Pay Now</button>
+        <button type="submit" data-aos="fade-in">Pay Now</button>
       </form>
     </section>
 
-    <section class="history">
+    <section class="history" data-aos="fade-in">
       <h2>Transaction History</h2>
       <hr>
-      <div id="historyList">
+      <div id="historyList" data-aos="fade-up" >
       </div>
     </section>
 
-    <section class="how-to">
+    <section class="how-to" data-aos="fade-up">
   <h2>How to Top Up Your Airtime</h2>
   <hr>
   <div class="steps">
-    <div class="step">
+    <div class="step" data-aos="fade-up" >
       <img src="step1.png" alt="Step 1">
       <h4>1. Enter Top-Up Details</h4>
       <p>Input the recipient’s phone number, the amount, and your M-Pesa number.</p>
     </div>
     <div class="step">
-      <img src="step2.png" alt="Step 2">
+      <img src="step2.png" alt="Step 2" data-aos="fade-up" data-aos-delay="100">
       <h4>2. Confirm and Pay</h4>
       <p>Double-check your details and click “Pay Now”. Follow the M-Pesa prompt to complete payment.</p>
     </div>
     <div class="step">
-      <img src="step3.png" alt="Step 3">
+      <img src="step3.png" alt="Step 3" data-aos="fade-up" data-aos-delay="200">
       <h4>3. Receive Airtime Instantly</h4>
       <p>Your airtime will be sent directly to the chosen number in seconds!</p>
     </div>
@@ -104,27 +106,27 @@
   <div class="footer-content">
     <div class="certifications">
       <h4>Certified & Regulated By</h4>
-      <figure>
+      <figure data-aos="fade-in">
         <img src="cbk-logo.png" alt="Central Bank of Kenya" />
         <figcaption>Central Bank of Kenya</figcaption>
       </figure>
-      <figure>
+      <figure data-aos="fade-in" data-aos-delay="100">
         <img src="ca-logo.png" alt="Communications Authority" />
         <figcaption>Communications Authority</figcaption>
       </figure>
-      <figure>
+      <figure data-aos="fade-in" data-aos-delay="200">
         <img src="psp.png" alt="Payment Service Provider" />
         <figcaption>M-PESA</figcaption>
       </figure>
     </div><hr>
     <div class="partners">
       <h4>Our Partners</h4>
-      <img src="saf.png" alt="Safaricom" />
-      <img src="airtel.png" alt="Airtel" />
-      <img src="telkom.jpg" alt="Telkom" />
+      <img src="saf.png" alt="Safaricom" data-aos="fade-up"/>
+      <img src="airtel.png" alt="Airtel" data-aos="fade-up" data-aos-delay="100"/>
+      <img src="telkom.jpg" alt="Telkom" data-aos="fade-up" data-aos-delay="200"/>
     </div><hr>
     <div class="footer1" style="background-color: #0b2e0b; width: 100%; padding: 40px; margin: 0;">
-      <p>&copy; 2025 DaimaPay. All rights reserved. Powered by DAMAKI Solutions.</p>
+      <p>&copy; 2025 DaimaPay. All rights reserved. Powered by <strong data-aos="fade-up">DAMAKI</strong> <strong data-aos="fade-in" data-aos-delay="100">Solutions.</strong></p>
     </div>
   </div>
 </footer>
@@ -142,6 +144,8 @@
     });
   }
 </script>
-
+  <script>
+    AOS.init();
+  </script>
 </body>
 </html>
