@@ -294,6 +294,90 @@ form button:hover {
     line-height: 1.4;
 }
 
+/* Help Page - Send Us a Message Section */
+.message-us-section {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: var(--shadow);
+    text-align: center; /* Center the form elements, can be overridden if needed */
+}
+
+.message-us-section .section-heading { /* Specific heading style */
+    color: var(--green); /* Your green variable */
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem; /* Spacing between form elements */
+    max-width: 500px; /* Constrain form width for better readability */
+    margin: 0 auto; /* Center the form */
+}
+
+.contact-form label {
+    font-weight: bold;
+    color: var(--dark-gray);
+    text-align: left; /* Labels align left within the centered form */
+    margin-bottom: -1rem; /* Pull label closer to input */
+}
+
+.contact-form input[type="email"],
+.contact-form input[type="tel"],
+.contact-form textarea {
+    width: 100%;
+    padding: 0.85rem 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    box-sizing: border-box; /* Include padding/border in element's total width and height */
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    border-color: var(--green);
+    box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.1);
+    outline: none;
+}
+
+.contact-form textarea {
+    min-height: 150px; /* Slightly adjusted for better default view */
+    resize: vertical; /* Allow vertical resizing only */
+}
+
+.send-button {
+    width: 50%; /* Your desired width */
+    background-color: var(--green); /* Your green variable */
+    color: var(--white);
+    font-weight: bold;
+    padding: 1rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+    margin: 0 auto; /* Center the button */
+    display: block; /* Ensures button takes full width of its container, then centered */
+}
+
+.send-button:hover {
+    background-color: var(--gold); /* Consistent hover effect with other buttons */
+    transform: translateY(-2px);
+}
+.contact-card a {
+    color: var(--gold);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.contact-card a:hover {
+    text-decoration: underline;
+}
+
 /* Footer Styling */
 footer {
     text-align: center;
