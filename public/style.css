@@ -1,379 +1,546 @@
 :root {
-  --green: #2e7d32;
-  --gold: #c9a01a;
-  --white: #ffffff;
-  --offwhite: #f9f9f9;
-  --light-gray: #f0f0f0;
-  --dark-gray: #333;
-  --shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    --green: #2e7d32;
+    --gold: #c9a01a;
+    --white: #ffffff;
+    --offwhite: #f9f9f9;
+    --light-gray: #f0f0f0;
+    --dark-gray: #333;
+    --shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    --dark-green-footer: #0b2e0b; /* A darker green for the copyright bar */
 }
 
+/* Universal box-sizing for consistent layout */
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 html, body {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  font-family: 'Segoe UI', Roboto, sans-serif;
-  background-color: var(--offwhite);
-  color: var(--dark-gray);
+    height: 100%;
+    /* Flex column to push footer to bottom if content is short */
+    display: flex;
+    flex-direction: column;
+    font-family: 'Segoe UI', Roboto, sans-serif;
+    background-color: var(--offwhite);
+    color: var(--dark-gray);
+    /* Smoother scrolling for AOS animations */
+    scroll-behavior: smooth;
 }
 
+/* Header Styling */
 header {
-  background: var(--green);
-  color: var(--white);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1.2rem 2rem;
-  box-shadow: var(--shadow);
+    background: var(--green);
+    color: var(--white);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 2rem;
+    box-shadow: var(--shadow);
+    z-index: 100; /* Ensure header stays on top */
 }
 
 .logo {
-  font-size: 1.8rem;
-  font-weight: bold;
-  letter-spacing: 0.5px;
+    font-size: 1.8rem;
+    font-weight: bold;
+    letter-spacing: 0.5px;
 }
 
 nav a {
-  color: var(--white);
-  margin-left: 2rem;
-  text-decoration: none;
-  font-weight: 500;
-  transition: opacity 0.3s;
+    color: var(--white);
+    margin-left: 2rem;
+    text-decoration: none;
+    font-weight: 500;
+    transition: opacity 0.3s;
 }
 
 nav a:hover {
-  opacity: 0.8;
+    opacity: 0.8;
 }
 
+/* Main Content Area */
 main {
-  flex: 1;
-  padding: 2rem 1rem;
-  max-width: 900px;
-  margin: 0 auto;
+    flex: 1; /* Allows main content to grow and push footer down */
+    padding: 2rem 1rem;
+    max-width: 960px; /* Increased max-width slightly for better content display */
+    margin: 0 auto;
 }
 
-.images {
-  display: flex;
-  justify-content: center;
-  gap: 40px;
-  flex-wrap: wrap;
-  margin-bottom: 2rem;
+/* Hero Section */
+.hero-section {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    border: 2px solid var(--green); /* Green border */
+    border-radius: 5px;
+    background-color: var(--white);
+    box-shadow: var(--shadow);
 }
 
-.images img {
-  width: 80px;
-  height: auto;
-  border-radius: 12px;
-  border: 3px solid var(--green);
-  transition: transform 0.3s, box-shadow 0.3s;
+.hero-heading {
+    font-size: 2rem;
+    color: var(--green);
+    margin-bottom: 1rem;
+    text-align: center; /* Ensure heading is centered */
 }
 
-.images img:hover {
-  transform: translateY(-5px);
-  box-shadow: var(--shadow);
+.network-logos {
+    display: flex;
+    justify-content: center;
+    gap: 40px; /* Retained your gap */
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
 }
 
-.airtime-form,
-.history {
-  background: var(--white);
-  border-radius: 12px;
-  padding: 2rem;
-  margin-bottom: 2rem;
-  box-shadow: var(--shadow);
+.network-logos img {
+    width: 80px; /* Retained your width */
+    height: auto;
+    border-radius: 12px;
+    border: 3px solid var(--green); /* Green border as per your `images img` */
+    transition: transform 0.3s, box-shadow 0.3s;
 }
 
-.airtime-form h2,
-.history h2 {
-  color: var(--green);
-  margin-bottom: 0.5rem;
-  text-align: center;
+.network-logos img:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow);
 }
 
-.airtime-form hr,
-.history hr {
-  border: 0;
-  border-top: 2px solid var(--light-gray);
-  margin: 1rem 0 2rem;
+.offline-paybill {
+    font-weight: bolder;
+    font-size: large;
+    border: 2px solid var(--green);
+    padding: 5px;
+    border-radius: 5px;
+    display: inline-block; /* To make border fit content */
+    margin-bottom: 2rem; /* Added margin for spacing */
 }
 
+.offline-paybill u {
+    font-size: 1.2em; /* Emphasize the number */
+}
+
+/* Common Section Styling (for form, history, how-to) */
+.airtime-form-section, /* Renamed from .airtime-form */
+.history-section, /* Renamed from .history */
+.how-to-section { /* Renamed from .how-to */
+    background: var(--white);
+    border-radius: 12px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: var(--shadow);
+}
+
+/* Common Heading Styles for Sections */
+.airtime-form-section h2,
+.history-section h2,
+.how-to-section h2 {
+    color: var(--green);
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+
+/* Common Horizontal Rule Styles for Sections */
+.airtime-form-section hr,
+.history-section hr,
+.how-to-section hr {
+    border: 0;
+    border-top: 2px solid var(--light-gray);
+    margin: 1rem 0 2rem;
+}
+
+/* Form Styling */
 form label {
-  font-size: 0.95rem;
-  margin-bottom: 0.25rem;
-  display: block;
-  color: var(--dark-gray);
+    font-size: 0.95rem;
+    margin-bottom: 0.25rem;
+    display: block; /* Ensures label takes its own line */
+    color: var(--dark-gray);
+    font-weight: bold; /* Retained strong tag effect */
 }
 
 form input {
-  display: block;
-  width: 100%;
-  margin-bottom: 1.5rem;
-  padding: 0.85rem 1rem;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  font-size: 1rem;
-  transition: border-color 0.3s, box-shadow 0.3s;
+    display: block;
+    width: 100%;
+    margin-bottom: 1.5rem;
+    padding: 0.85rem 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s, box-shadow 0.3s;
 }
 
 form input:focus {
-  border-color: var(--green);
-  box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.1);
-  outline: none;
+    border-color: var(--green);
+    box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.1);
+    outline: none;
 }
 
 form button {
-  display: block;
-  width: 100%;
-  background-color: var(--green);
-  color: var(--white);
-  font-weight: bold;
-  padding: 1rem;
-  border: none;
-  border-radius: 8px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background 0.3s, transform 0.2s;
+    display: block;
+    width: 100%;
+    background-color: var(--green);
+    color: var(--white);
+    font-weight: bold;
+    padding: 1rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
 }
 
 form button:hover {
-  background-color: #b38c0f;
-  transform: translateY(-2px);
+    background-color: var(--gold); /* Changed to use your --gold variable */
+    transform: translateY(-2px);
 }
 
+/* Notification Pop-up */
 .notification {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  max-width: 320px;
-  padding: 16px 20px;
-  font-size: 16px;
-  font-weight: 500;
-  color: #fff;
-  border-radius: 6px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-  z-index: 9999;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.4s ease, transform 0.4s ease;
-  transform: translateY(-20px);
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    max-width: 320px;
+    padding: 16px 20px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #fff;
+    border-radius: 6px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    transform: translateY(-20px);
 }
 .notification.show {
-  opacity: 1;
-  transform: translateY(0);
-  pointer-events: auto;
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
 }
 .notification.success {
-  background-color: #2e7d32;
+    background-color: #2e7d32;
 }
 .notification.error {
-  background-color: #c62828;
+    background-color: #c62828;
 }
 .notification.warning {
-  background-color: #f9a825;
-  color: #000;
+    background-color: #f9a825;
+    color: #000;
 }
 .notification i {
-  font-style: normal;
-  font-weight: bold;
+    font-style: normal;
+    font-weight: bold;
 }
 
-
-
+/* Transaction History List */
 #historyList {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 1rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1rem;
 }
 
 .transaction-card {
-  background: var(--offwhite);
-  border: 1px solid var(--light-gray);
-  border-left: 4px solid var(--green);
-  border-radius: 8px;
-  padding: 1rem;
-  box-shadow: var(--shadow);
+    background: var(--offwhite);
+    border: 1px solid var(--light-gray);
+    border-left: 4px solid var(--green);
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: var(--shadow);
 }
 
 .transaction-card h4 {
-  margin-bottom: 0.5rem;
-  color: var(--dark-gray);
+    margin-bottom: 0.5rem;
+    color: var(--dark-gray);
 }
 
 .transaction-card p {
-  font-size: 0.9rem;
-  color: #555;
-  line-height: 1.4;
+    font-size: 0.9rem;
+    color: #555;
+    line-height: 1.4;
 }
 
-footer {
-  text-align: center;
-  padding: 2rem 1rem;
-  background-color: var(--green);
-  color: var(--white);
+/* How-To Section */
+.how-to-section h3 { /* Targets the new h3 in how-to steps */
+    margin-bottom: 0.5rem;
+    color: var(--gold); /* Retained gold color from your step h4 */
 }
 
-.footer-content {
-  max-width: 1000px;
-  margin: 0 auto;
-}
-
-.footer-content h4 {
-  margin-bottom: 0.5rem;
-  font-size: 1.1rem;
-  color: var(--gold);
-}
-
-.footer-content img {
-  height: 80px;
-  margin: 0.5rem;
-  vertical-align: middle;
-  border-radius: 6px;
-  background: var(--white);
-  padding: 4px;
-}
-
-.footer-content p {
-  margin-top: 1rem;
-  font-size: 0.85rem;
-  color: var(--white);
-  opacity: 0.8;
-}
-
-.certifications, .partners {
-  margin-bottom: 1rem;
-}
-
-
-@media (max-width: 600px) {
-  header {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  nav {
-    margin-top: 0.5rem;
-  }
-
-  nav a {
-    margin: 0 0.75rem;
-  }
-
-  .images {
-    gap: 20px;
-  }
-
-  form button {
-    font-size: 1.1rem;
-  }
-}
-
-.how-to {
-  background: var(--white);
-  border-radius: 12px;
-  padding: 2rem;
-  margin-bottom: 2rem;
-  box-shadow: var(--shadow);
-}
-
-.how-to h2 {
-  color: var(--green);
-  text-align: center;
-  margin-bottom: 0.5rem;
-}
-
-.how-to hr {
-  border: 0;
-  border-top: 2px solid var(--light-gray);
-  margin: 1rem 0 2rem;
-}
-
-.steps {
-  display: flex;
-  gap: 2rem;
-  flex-wrap: wrap;
-  justify-content: center;
+.steps-container { /* Renamed from .steps */
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .step {
-  flex: 1 1 200px;
-  max-width: 250px;
-  text-align: center;
+    flex: 1 1 200px;
+    max-width: 250px;
+    text-align: center;
 }
 
 .step img {
-  width: 100px;
-  height: auto;
-  margin-bottom: 1rem;
-  border-radius: 12px;
-  box-shadow: var(--shadow);
-}
-
-.step h4 {
-  margin-bottom: 0.5rem;
-  color: var(--gold);
+    width: 100px;
+    height: auto;
+    margin-bottom: 1rem;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
 }
 
 .step p {
-  font-size: 0.9rem;
-  color: #555;
-  line-height: 1.4;
+    font-size: 0.9rem;
+    color: #555;
+    line-height: 1.4;
 }
 
+/* Footer Styling */
+footer {
+    text-align: center;
+    padding: 2rem 1rem 0; /* Adjusted padding-bottom to allow copyright bar its own space */
+    background-color: var(--green);
+    color: var(--white);
+    margin-top: auto; /* Pushes footer to the bottom */
+}
+
+.footer-content-wrapper { /* New wrapper div */
+    max-width: 1000px; /* Used your max-width from .footer-content */
+    margin: 0 auto;
+}
+
+.certifications, .partners {
+    margin-bottom: 1rem;
+}
+
+.certifications h4, .partners h4 {
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+    color: var(--gold);
+}
+
+.certification-logos, .partner-logos { /* New divs for logo groups */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem; /* Added gap for spacing between logos */
+    margin-bottom: 1rem;
+}
+
+.certifications figure { /* For CBK, CA, M-Pesa logos */
+    margin: 0; /* Remove default figure margin */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.certifications figure img, .partners img {
+    height: 80px; /* Retained your height */
+    margin: 0.5rem 0; /* Adjusted margin for figure context */
+    vertical-align: middle;
+    border-radius: 6px;
+    background: var(--white);
+    padding: 4px;
+    object-fit: contain; /* Ensures images scale well */
+}
+
+.certifications figcaption {
+    font-size: 0.85rem;
+    color: var(--white);
+    opacity: 0.9;
+    margin-top: 0.25rem;
+}
+
+
+.footer-divider { /* For the <hr> elements in the footer */
+    border: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.2); /* Lighter divider */
+    width: 80%; /* Adjust width as needed */
+    margin: 1.5rem auto;
+}
+
+.copyright-info { /* New div for the bottom copyright bar */
+    background-color: var(--dark-green-footer); /* Darker green */
+    width: 100%;
+    padding: 1.5rem 1rem; /* Adjust padding */
+    margin-top: 1rem; /* Spacing from the elements above it */
+}
+
+.copyright-info p {
+    margin: 0; /* Remove default paragraph margin */
+    font-size: 0.85rem;
+    color: var(--white);
+    opacity: 0.8;
+}
+
+.damaki-solution {
+    color: var(--gold); /* Use your gold variable */
+    font-weight: bold;
+}
+
+
+/* Help Page Specific Styles (your existing help-page styles) */
 .help-page {
-  max-width: 900px;
-  margin: 2rem auto;
-  padding: 0 1rem;
-  text-align: center;
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+    text-align: center;
 }
 
 .help-page h1 {
-  color: var(--green);
-  margin-bottom: 0.5rem;
+    color: var(--green);
+    margin-bottom: 0.5rem;
 }
 
 .help-page p {
-  margin-bottom: 2rem;
+    margin-bottom: 2rem;
 }
 
 .contact-options {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 1.5rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1.5rem;
 }
 
 .contact-card {
-  background: var(--white);
-  border: 2px solid var(--gold);
-  border-radius: 10px;
-  padding: 1rem;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    background: var(--white);
+    border: 2px solid var(--gold);
+    border-radius: 10px;
+    padding: 1rem;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
 }
 
 .contact-card img {
-  width: 40px;
-  height: 40px;
-  margin-bottom: 0.5rem;
+    width: 40px;
+    height: 40px;
+    margin-bottom: 0.5rem;
 }
 
 .contact-card h3 {
-  margin-bottom: 0.3rem;
-  color: var(--green);
+    margin-bottom: 0.3rem;
+    color: var(--green);
 }
 
 .contact-card a {
-  color: var(--gold);
-  text-decoration: none;
-  font-weight: bold;
+    color: var(--gold);
+    text-decoration: none;
+    font-weight: bold;
 }
 
 .contact-card a:hover {
-  text-decoration: underline;
+    text-decoration: underline;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        padding: 1rem;
+    }
+
+    nav {
+        margin-top: 0.5rem; /* Adjusted for smaller screens */
+    }
+
+    nav a {
+        margin: 0 0.75rem; /* Closer spacing for links */
+    }
+
+    main {
+        padding: 1rem 0.5rem; /* Reduce padding on smaller screens */
+    }
+
+    .hero-section,
+    .airtime-form-section,
+    .history-section,
+    .how-to-section {
+        padding: 1rem; /* Reduced padding for sections */
+        margin-bottom: 1.5rem; /* Slightly less margin */
+    }
+
+    .hero-heading {
+        font-size: 1.75rem; /* Smaller heading on mobile */
+    }
+
+    .network-logos {
+        gap: 20px; /* Reduced gap for logos */
+    }
+
+    .network-logos img {
+        width: 60px; /* Slightly smaller logos on mobile */
+    }
+
+    .steps-container { /* How-to steps */
+        flex-direction: column; /* Stack steps vertically */
+        align-items: center;
+        gap: 1.5rem;
+    }
+
+    .step {
+        max-width: 90%; /* Allow steps to take more width on small screens */
+    }
+
+    .notification {
+        top: auto; /* Position notification at bottom on small screens */
+        bottom: 20px;
+        left: 50%;
+        right: auto;
+        transform: translateX(-50%);
+        width: calc(100% - 40px); /* Full width minus margin */
+        max-width: 90%;
+    }
+
+    footer {
+        padding-top: 1.5rem;
+    }
+
+    .footer-divider {
+        width: 90%; /* Wider divider on small screens */
+    }
+
+    .certification-logos, .partner-logos {
+        gap: 0.75rem; /* Slightly less gap for footer logos */
+    }
+
+    .certifications figure img, .partners img {
+        height: 60px; /* Smaller footer logos */
+    }
+}
+
+/* Even smaller screens (e.g., very small phones) */
+@media (max-width: 480px) {
+    .logo {
+        font-size: 1.5rem;
+    }
+
+    nav a {
+        font-size: 0.9rem;
+        margin: 0 0.5rem;
+    }
+
+    .hero-heading {
+        font-size: 1.5rem;
+    }
+
+    .offline-paybill {
+        font-size: medium;
+    }
+
+    form label, form input, form button {
+        font-size: 0.9rem;
+        padding: 0.7rem 0.8rem;
+    }
+
+    .notification {
+        font-size: 14px;
+        padding: 12px 15px;
+    }
+
+    .transaction-card p, .step p {
+        font-size: 0.85rem;
+    }
+
+    .copyright-info p {
+        font-size: 0.8rem;
+    }
 }
