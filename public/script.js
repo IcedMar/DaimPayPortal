@@ -56,7 +56,7 @@ buyForm.addEventListener('submit', async (e) => {
     return;
   }
 
-  const recipienNumber = normalizePhoneNumber(rawRecipient);
+  const recipientNumber = normalizePhoneNumber(rawRecipient);
   const customerNumber = normalizePhoneNumber(rawCustomer);
   const amount = parseFloat(rawAmount)
 
@@ -78,7 +78,7 @@ buyForm.addEventListener('submit', async (e) => {
       alert('Payment initiated! Check your M-Pesa.');
       const tx = {
         transID: data.transID || `local-${Date.now()}`,
-        recipientPhone: topupNumber,
+        recipientPhone: recipientNumber,
         amount: amount,
         status: 'PENDING',
         timestamp: new Date().toISOString(),
