@@ -78,7 +78,7 @@ buyForm.addEventListener('submit', async (e) => {
       alert('Payment initiated! Check your M-Pesa.');
       const tx = {
         transID: data.transID || `local-${Date.now()}`,
-        recipientPhone: recipienNumber,
+        recipientPhone: topupNumber,
         amount: amount,
         status: 'PENDING',
         timestamp: new Date().toISOString(),
