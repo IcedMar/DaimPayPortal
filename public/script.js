@@ -80,7 +80,7 @@ buyForm.addEventListener('submit', async (e) => {
 
     const recipientNumber = normalizePhoneNumber(rawRecipient);
     const customerNumber = normalizePhoneNumber(rawCustomer);
-    const amount = parseFloat(rawAmount);
+    const amount = parseFloat(rawAmount); // Ensure amount is a number here
 
     // Basic validation for numbers and amount
     if (isNaN(amount) || amount <= 0) {
@@ -98,7 +98,6 @@ buyForm.addEventListener('submit', async (e) => {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                // Corrected parameter names to match server expectations
                 phoneNumber: customerNumber, // This is the M-Pesa number initiating payment
                 amount: amount,
                 recipient: recipientNumber // This is the number receiving airtime
@@ -108,23 +107,19 @@ buyForm.addEventListener('submit', async (e) => {
         const data = await res.json();
         console.log('Server response:', data);
 
-        if (res.ok) { // Status codes 200-299 are considered 'ok'
-            // Assuming your server returns a transID upon successful STK push initiation
+        if (res.ok) {
             showNotification('M-Pesa STK Push initiated successfully! Check your phone.', 'success');
 
             const tx = {
-                transID: data.CheckoutRequestID || `local-${Date.now()}`, // Use CheckoutRequestID if available
+                transID: data.CheckoutRequestID || `local-${Date.now()}`,
                 recipientPhone: recipientNumber,
-                amount: amount,
-                status: 'PENDING', // Status is PENDING until confirmed by callback
+                amount: amount, // 'amount' is already a number here
+                status: 'PENDING',
                 timestamp: new Date().toISOString(),
-                // You might want to store more details from the response if useful for debugging
-                // MpesaResponse: data
             };
             saveTransaction(tx);
             buyForm.reset();
         } else {
-            // Handle server-side errors (e.g., 400, 500)
             console.error('STK Push Error:', data);
             showNotification(`Error: ${data.message || data.error || 'Server failed to initiate payment.'}`, 'error');
         }
@@ -136,7 +131,6 @@ buyForm.addEventListener('submit', async (e) => {
 
 // --- Save to IndexedDB ---
 function saveTransaction(tx) {
-    // Ensure db is available before attempting transaction
     if (!db) {
         console.error("IndexedDB not initialized. Cannot save transaction.");
         showNotification("Could not save transaction history. Please refresh.", "error");
@@ -144,11 +138,11 @@ function saveTransaction(tx) {
     }
     const transaction = db.transaction([STORE_NAME], "readwrite");
     const store = transaction.objectStore(STORE_NAME);
-    store.put(tx); // Use put for upsert (add or update)
+    store.put(tx);
 
     transaction.oncomplete = () => {
         console.log("✅ Transaction saved locally.");
-        loadTransactions(); // Reload history to show new transaction
+        loadTransactions();
     };
 
     transaction.onerror = (event) => {
@@ -161,11 +155,13 @@ function saveTransaction(tx) {
 function loadTransactions() {
     if (!db) {
         console.warn("IndexedDB not ready. Cannot load transactions.");
-        // Try to re-open or wait if not ready
+        // This block attempts to retry loading after DB is ready.
+        // It's a bit redundant if request.onsuccess already calls loadTransactions,
+        // but can help if loadTransactions is called prematurely from other parts.
         if (request.readyState === 'pending') {
             request.onsuccess = (event) => {
                 db = event.target.result;
-                loadTransactions(); // Retry after DB is ready
+                loadTransactions();
             };
         }
         return;
@@ -176,25 +172,30 @@ function loadTransactions() {
 
     request.onsuccess = (event) => {
         let transactions = event.target.result;
-        historyList.innerHTML = ''; // Clear current list
+        historyList.innerHTML = '';
 
         if (!transactions || transactions.length === 0) {
             historyList.innerHTML = '<p class="no-transactions">No local transactions yet. Make a top-up to see history!</p>';
             return;
         }
 
-        // Sort transactions by timestamp in descending order (newest first)
         transactions.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
 
         transactions.forEach(tx => {
             const card = document.createElement('div');
-            // Changed class name to 'transaction-card' to match style.css
             card.className = 'transaction-card';
+
+            // *** FIX APPLIED HERE ***
+            // Ensure amount is a number before using toFixed
+            const displayAmount = typeof tx.amount === 'string' ? parseFloat(tx.amount) : tx.amount;
+            const formattedAmount = isNaN(displayAmount) ? 'N/A' : displayAmount.toFixed(2);
+
+
             card.innerHTML = `
                 <h4>Transaction Details</h4>
                 <p><strong>ID:</strong> ${tx.transID}</p>
                 <p><strong>To:</strong> ${tx.recipientPhone}</p>
-                <p><strong>Amount:</strong> KES ${tx.amount.toFixed(2)}</p>
+                <p><strong>Amount:</strong> KES ${formattedAmount}</p>
                 <p><strong>Status:</strong> <span style="color: ${tx.status === 'SUCCESS' ? 'var(--green)' : tx.status === 'FAILED' ? '#c62828' : 'var(--gold)'}">${tx.status}</span></p>
                 <small>${new Date(tx.timestamp).toLocaleString()}</small>
             `;
@@ -207,7 +208,3 @@ function loadTransactions() {
         showNotification("Failed to load transaction history.", "error");
     };
 }
-
-// Initial load (called after IndexedDB opens successfully)
-// Make sure loadTransactions() is called only once the db object is available.
-// It's already correctly placed in request.onsuccess.
