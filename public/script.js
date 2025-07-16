@@ -31,17 +31,34 @@ const historyList = document.getElementById('historyList');
 
 const API_BASE_URL = 'https://daimapayserver.onrender.com';
 
+// --- Helper to normalize Safaricom numbers ---
+function normalizePhoneNumber(phone) {
+  let normalized = phone.trim();
+  if (normalized.startsWith('+')) {
+    normalized = normalized.slice(1); // Remove '+'
+  }
+  if (normalized.startsWith('07')) {
+    normalized = '254' + normalized.slice(1);
+  }
+  return normalized;
+}
+
+//buy form handler
 buyForm.addEventListener('submit', async (e) => {
   e.preventDefault();
 
-  const recipientNumber = phoneInput.value.trim();
-  const amount = amountInput.value.trim();
-  const customerNumber = payPhoneInput.value.trim();
+  const rawRecipient = phoneInput.value.trim();
+  const rawAmount = amountInput.value.trim();
+  const rawCustomer = payPhoneInput.value.trim();
 
-  if (!recipientNumber || !amount || !customerNumber) {
+  if (!rawRecipient || !rawAmount || !rawCustomer) {
     alert('Fill all fields!');
     return;
   }
+
+  const recipienNumber = normalizePhoneNumber(rawRecipient);
+  const customerNumber = normalizePhoneNumber(rawCustomer);
+  const amount = parseFloat(rawAmount)
 
   try {
     const res = await fetch(`${API_BASE_URL}/stk-push`, {
@@ -49,8 +66,9 @@ buyForm.addEventListener('submit', async (e) => {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ 
         phone_number: customerNumber,
-        amount: parseFloat(amount),
-        recipientNumber: recipientNumber }),
+        amount: amount,
+        recipientNumber: recipientNumber 
+      }),
     });
 
     const data = await res.json();
@@ -60,7 +78,7 @@ buyForm.addEventListener('submit', async (e) => {
       alert('Payment initiated! Check your M-Pesa.');
       const tx = {
         transID: data.transID || `local-${Date.now()}`,
-        recipientPhone: topupNumber,
+        recipientPhone: recipientNumber,
         amount: amount,
         status: 'PENDING',
         timestamp: new Date().toISOString(),
