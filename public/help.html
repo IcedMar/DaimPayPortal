@@ -1,70 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Help & Contact | DaimaPay</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Help & Contact | DaimaPay</title>
+    <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header>
-    <div class="logo">DaimaPay</div>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="wallet.html">Wallet</a>
-    </nav>
-  </header>
+    <header>
+        <div class="logo">DaimaPay</div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="wallet.html">Wallet</a>
+        </nav>
+    </header>
 
-  <main class="help-page">
-    <h1>Need Help? Get in Touch</h1>
-    <p>Our support team is always ready to help you with any issue or question. Reach out to us anytime via:</p>
+    <main class="help-page">
+        <h1>Need Help? Get in Touch</h1>
+        <p>Our support team is always ready to help you with any issue or question. Reach out to us anytime via:</p>
 
-    <div class="contact-options">
-      <div class="contact-card">
-        <img src="wap.png" alt="WhatsApp" />
-        <h3>WhatsApp</h3>
-        <p><a href="#" target="_blank">Chat Now</a></p>
-      </div>
+        <div class="contact-options">
+            <div class="contact-card">
+                <img src="wap.png" alt="WhatsApp icon" />
+                <h3>WhatsApp</h3>
+                <p><a href="https://wa.me/YOUR_PHONE_NUMBER" target="_blank" rel="noopener noreferrer">Chat Now</a></p>
+            </div>
 
-      <div class="contact-card">
-        <img src="phone.png" alt="SMS" />
-        <h3>Phone/SMS</h3>
-        <p><a href="#">0700220033</a></p>
-      </div>
+            <div class="contact-card">
+                <img src="phone.png" alt="Phone icon" />
+                <h3>Phone/SMS</h3>
+                <p><a href="tel:+254700220033">0700220033</a></p>
+            </div>
 
-      <div class="contact-card">
-        <img src="loc.png" alt="Location" />
-        <h3>Location</h3>
-        <p><a href="#">MSA Rd, Nairobi</a></p>
-      </div>
+            <div class="contact-card">
+                <img src="loc.png" alt="Location pin icon" />
+                <h3>Location</h3>
+                <p><a href="https://maps.google.com/?q=MSA%20Rd,%20Nairobi" target="_blank" rel="noopener noreferrer">MSA Rd, Nairobi</a></p>
+            </div>
 
-      <div class="contact-card">
-        <img src="email.png" alt="Email" />
-        <h3>Email</h3>
-        <p><a href="#">support@daimapay.co.ke</a></p>
-      </div>
-    </div><br>
-    <hr>
-    <div class="message-us">
-        <h2 style="color: green;">Send Us a Message</h2>
-        <form class="message">
-            <label for="email" style="float: left;"><strong>Email:</strong></label>
-            <input type="email" id="email" placeholder="email" required>
-            <label for="phone" style="float: left;"><strong>Number:</strong></label>
-            <input type="tel" id="phone" placeholder="07xxxxxxxx" required>
-            <label for="content" style="float: left;"><strong>Message:</strong></label>
-            <textarea id="content" placeholder="Message" required style="width: 100%; min-height: 200px; border-radius: 8px;"></textarea>
-            <br>
-            <button type="submit" style="width: 50%; background-color: green;"><strong>SEND</strong></button>
-        </form>
-    </div>
-  </main>
+            <div class="contact-card">
+                <img src="email.png" alt="Email icon" />
+                <h3>Email</h3>
+                <p><a href="mailto:support@daimapay.co.ke">support@daimapay.co.ke</a></p>
+            </div>
+        </div>
 
-  <footer>
-    <div class="footer-content">
-      <p>&copy; 2025 DaimaPay. All rights reserved.</p>
-    </div>
-  </footer>
-  <script src="help.html"></script>
+        <hr>
+
+        <section class="message-us-section">
+            <h2 class="section-heading">Send Us a Message</h2>
+            <form class="contact-form">
+                <label for="email">Email:</label>
+                <input type="email" id="email" placeholder="email@example.com" required>
+
+                <label for="phone-contact">Number:</label>
+                <input type="tel" id="phone-contact" placeholder="07xxxxxxxx" required> <label for="content">Message:</label>
+                <textarea id="content" placeholder="Type your message here..." required></textarea>
+
+                <button type="submit" class="send-button">SEND</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content-wrapper">
+            <div class="certifications">
+                <h4>Certified & Regulated By</h4>
+                <div class="certification-logos">
+                    <figure data-aos="fade-in">
+                        <img src="cbk-logo.png" alt="Central Bank of Kenya logo" />
+                        <figcaption>Central Bank of Kenya</figcaption>
+                    </figure>
+                    <figure data-aos="fade-in" data-aos-delay="100">
+                        <img src="ca-logo.png" alt="Communications Authority of Kenya logo" />
+                        <figcaption>Communications Authority</figcaption>
+                    </figure>
+                    <figure data-aos="fade-in" data-aos-delay="200">
+                        <img src="psp.png" alt="M-PESA logo" />
+                        <figcaption>M-PESA</figcaption>
+                    </figure>
+                </div>
+            </div>
+            <hr class="footer-divider">
+            <div class="partners">
+                <h4>Our Partners</h4>
+                <div class="partner-logos">
+                    <img src="saf.png" alt="Safaricom logo" data-aos="fade-up"/>
+                    <img src="airtel.png" alt="Airtel logo" data-aos="fade-up" data-aos-delay="100"/>
+                    <img src="telkom.jpg" alt="Telkom logo" data-aos="fade-up" data-aos-delay="200"/>
+                </div>
+            </div>
+            <hr class="footer-divider">
+            <div class="copyright-info">
+                <p>&copy; 2025 DaimaPay. All rights reserved. Powered by <strong class="damaki-solution">DAMAKI SOLUTIONS.</strong></p>
+            </div>
+        </div>
+    </footer>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init(); // Initialize AOS if used on this page
+    </script>
+    <script src="script.js"></script>
 </body>
 </html>
