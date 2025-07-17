@@ -39,6 +39,11 @@ app.get('/wallet', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'wallet.html'));
 });
 
+app.get("/ping", (req, res) => {
+  res.status(200).send("pong");
+});
+
+
 // Health check
 app.get('/health', (req, res) => {
   res.status(200).json({ status: 'OK', message: 'DaimaPay server is running.' });
